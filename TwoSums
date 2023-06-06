@@ -1,43 +1,15 @@
-package om.example.two_sums;
-
-import javax.naming.ldap.StartTlsRequest;
-import java.util.Scanner;
-
-public class Two_Sums {
-    public static int[] twoSum(int[] nums, int target) {
-        int sumArray[] = new int[2];
-        int ind1 = -1, ind2 = -1;
-
-        for(int i = 0; i< nums.length;i++){
-            for(int j = i+1;j< nums.length;j++){
-                if(nums[i] + nums[j] == target){
-                    ind1 = i;
-                    ind2 = j;
-                    sumArray[0] = ind1;
-                    sumArray[1] = ind2;
-                    break;
-                }
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int index[] = {-1, -1};
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0;i< nums.length;i++){
+            if (map.containsKey(target-nums[i])){
+                index[0] = i;
+                index[1] = map.get(target-nums[i]);
+                return index;
             }
+            map.put(nums[i], i);
         }
-
-        //System.out.println(sumArray);
-        return sumArray;
-    }
-
-    public static void main(String[] args){
-        int n, target;
-        Scanner s = new Scanner(System.in);
-        System.out.print("Enter no. of elements you want in array:");
-        n = s.nextInt();
-
-        int nums[] = new int[n];
-        System.out.println("Enter all the elements:");
-        for(int i = 0; i < n; i++) {
-            nums[i] = s.nextInt();
-        }
-
-        System.out.print("Enter Target ");
-        target = s.nextInt();
-        twoSum(nums, target);
+        return index;
     }
 }
