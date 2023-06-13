@@ -1,0 +1,22 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int windowUpdate = 0;
+        int needleUpdate = 0;
+        for (int window = 0; window < haystack.length();){
+            if(haystack.charAt(window) == needle.charAt(needleUpdate)){
+                needleUpdate++;
+                window++;
+            }
+            else{
+                needleUpdate = 0;
+                windowUpdate++;
+                window = windowUpdate;
+            }
+           
+            if(needleUpdate == needle.length()){
+                return Math.abs(needleUpdate-window);
+            }
+        }
+        return -1;
+    }
+}
